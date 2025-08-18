@@ -1,10 +1,6 @@
-````markdown
 # File Converter API
 
 A simple FastAPI backend to **upload `.rar` files, convert them to `.zip`**, and download the converted files.  
-
-This project is deployed and live at:  
-[https://file-converter-api-bw13.onrender.com](https://file-converter-api-bw13.onrender.com)
 
 ## Features
 
@@ -18,7 +14,7 @@ This project is deployed and live at:
 ## API Endpoints
 
 | Endpoint | Method | Description |
-|----------|--------|------------|
+|----------|--------|-------------|
 | `/api/` | GET | Health check |
 | `/api/upload` | POST | Upload a `.rar` file |
 | `/api/convert` | POST | Convert uploaded `.rar` to `.zip` (requires `filename` query param) |
@@ -28,25 +24,25 @@ This project is deployed and live at:
 
 ### Health check
 ```bash
-curl https://file-converter-api-bw13.onrender.com/api/
-````
+curl http://localhost:8000/api/
+```
 
 ### Upload a file
 
 ```bash
-curl -F "file=@example.rar" https://file-converter-api-bw13.onrender.com/api/upload
+curl -F "file=@example.rar" http://localhost:8000/api/upload
 ```
 
 ### Convert file
 
 ```bash
-curl -X POST "https://file-converter-api-bw13.onrender.com/api/convert?filename=<your_uploaded_filename>"
+curl -X POST "http://localhost:8000/api/convert?filename=<your_uploaded_filename>"
 ```
 
 ### Download file
 
 ```bash
-curl -O https://file-converter-api-bw13.onrender.com/api/download/<converted_filename>.zip
+curl -O http://localhost:8000/api/download/<converted_filename>.zip
 ```
 
 ## Installation (for local development)
@@ -90,11 +86,10 @@ docker run -p 8000:8000 file-converter-api
 ```
 
 * Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)
-* API works exactly the same as on Render.
 
 ## Notes
 
-* The backend **does not store a database**; all uploaded files are handled in the `uploads/` folder.
+* The backend **does not use a database**; all uploaded files are handled in the `uploads/` folder.
 * The `uploads/` folder is temporary; files are deleted after conversion.
 * FastAPI automatically provides **Swagger UI** (`/docs`) and **OpenAPI JSON** (`/openapi.json`).
 
